@@ -31,12 +31,24 @@ class BitVectorTest : public ::testing::Test {
         v3_[i] = true;
       }
     }
+
+    v4_.resize(1000000, false);
+    n_sparse_true_ = 0;
+
+    for (int i = 0; i < v4_.size(); ++i) {
+      if (rand() % 1000 == 0) {
+        ++n_sparse_true_;
+        v4_[i] = true;
+      }
+    }
   }
 
   int n_true_;
+  int n_sparse_true_;
   std::vector<bool> v1_;
   std::vector<bool> v2_;
   std::vector<bool> v3_;
+  std::vector<bool> v4_;
 };
 
 TEST_F(BitVectorTest, RankWorks) {
@@ -62,10 +74,16 @@ TEST_F(BitVectorTest, RankWorks) {
   EXPECT_EQ(3u, bv2.Rank(9999));
 
   BitVector bv3(v3_);
-  NaiveBitVector nbv(v3_);
+  NaiveBitVector nbv3(v3_);
 
   for (int i = 0; i < v3_.size(); ++i)
-    EXPECT_EQ(nbv.Rank(i), bv3.Rank(i));
+    EXPECT_EQ(nbv3.Rank(i), bv3.Rank(i));
+
+  BitVector bv4(v4_);
+  NaiveBitVector nbv4(v4_);
+
+  for (int i = 0; i < v4_.size(); ++i)
+    EXPECT_EQ(nbv4.Rank(i), bv4.Rank(i));
 }
 
 TEST_F(BitVectorTest, SelectWorks) {
@@ -83,10 +101,16 @@ TEST_F(BitVectorTest, SelectWorks) {
   EXPECT_EQ(5215u, bv2.Select(2));
 
   BitVector bv3(v3_);
-  NaiveBitVector nbv(v3_);
+  NaiveBitVector nbv3(v3_);
 
   for (int i = 0; i < n_true_; ++i)
-    EXPECT_EQ(nbv.Select(i), bv3.Select(i));
+    EXPECT_EQ(nbv3.Select(i), bv3.Select(i));
+
+  BitVector bv4(v4_);
+  NaiveBitVector nbv4(v4_);
+
+  for (int i = 0; i < n_sparse_true_; ++i)
+    EXPECT_EQ(nbv4.Select(i), bv4.Select(i));
 }
 
 } // namespace succient_bv
