@@ -17,7 +17,6 @@ void BitVector::InitVector(const T &v) {
   n_b_ = n / 32 + 1;
   posix_memalign((void**)&b_, 32, n_b_ * sizeof(uint32_t));
 
-
   if (b_ == nullptr)
     throw std::runtime_error("Could not allocate memory for bit vector.");
 
@@ -137,7 +136,8 @@ size_t BitVector::n_bytes() const {
 
   n += select_table_.capacity() * sizeof(uint8_t);
 
-  return n; }
+  return n;
+}
 
 BitVector::SelectIndex::~SelectIndex() {}
 
