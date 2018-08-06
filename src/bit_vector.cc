@@ -5,6 +5,8 @@
 
 #include <iostream>
 
+#include <x86intrin.h>
+
 namespace succient_bv {
 
 using std::vector;
@@ -53,6 +55,14 @@ void BitVector::InitRankIndex() {
     r1_sum += count;
     r2_sum += count;
   }
+}
+
+uint64_t BitVector::Rank(uint64_t x) const {
+  size_t r2_index = x / 32;
+  uint32_t bits = b_[r2_index] >> (32 - 1 - (x % 32));
+
+  // popcnt instruction is used instead of the pattern table for 1/2 w bits.
+  return r1_[x / (64 * 64)] + r2_[r2_index] + _mm_popcnt_u32(bits);
 }
 
 void BitVector::InitSelectIndex() {

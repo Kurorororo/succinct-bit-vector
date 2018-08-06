@@ -8,8 +8,6 @@
 #include <memory>
 #include <vector>
 
-#include <x86intrin.h>
-
 namespace succient_bv {
 
 class BitVector {
@@ -20,13 +18,7 @@ class BitVector {
 
   ~BitVector() { free(b_); }
 
-  uint64_t Rank(uint64_t x) const {
-    size_t r2_index = x / 32;
-    uint32_t bits = b_[r2_index] >> (32 - 1 - (x % 32));
-
-    // popcnt instruction is used instead of the pattern table for 1/2 w bits.
-    return r1_[x / (64 * 64)] + r2_[r2_index] + _mm_popcnt_u32(bits);
-  }
+  uint64_t Rank(uint64_t x) const;
 
   uint64_t Select(uint64_t i) const {
     return s_[i / (64 * 64)]->Select(this, i % (64 * 64));

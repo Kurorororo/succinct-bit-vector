@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 
 set(GTEST_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/lib/googletest/googletest/)
-include_directories(${GTEST_ROOT}/include ${CMAKE_CURRENT_SOURCE_DIR}/../src)
+include_directories(${GTEST_ROOT}/include ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 link_directories(${GTEST_ROOT})
 add_subdirectory(${GTEST_ROOT})
 
