@@ -41,14 +41,34 @@ class BitVectorTest : public ::testing::Test {
         v4_[i] = true;
       }
     }
+
+    v5_.resize(1000000, false);
+    n_mix_true_ = 0;
+    bool sparse_mode = true;
+
+    for (int i = 0; i < v5_.size(); ++i) {
+      if (i % 10000 == 0) sparse_mode = !sparse_mode;
+
+      if (sparse_mode && rand() % 1000 == 0) {
+        ++n_mix_true_;
+        v5_[i] = true;
+      }
+
+      if (!sparse_mode && rand() % 2 == 0) {
+        ++n_mix_true_;;
+        v5_[i] = true;
+      }
+    }
   }
 
   int n_true_;
   int n_sparse_true_;
+  int n_mix_true_;
   std::vector<bool> v1_;
   std::vector<bool> v2_;
   std::vector<bool> v3_;
   std::vector<bool> v4_;
+  std::vector<bool> v5_;
 };
 
 TEST_F(BitVectorTest, RankWorks) {
@@ -84,6 +104,12 @@ TEST_F(BitVectorTest, RankWorks) {
 
   for (int i = 0; i < v4_.size(); ++i)
     EXPECT_EQ(nbv4.Rank(i), bv4.Rank(i));
+
+  BitVector bv5(v5_);
+  NaiveBitVector nbv5(v5_);
+
+  for (int i = 0; i < v5_.size(); ++i)
+    EXPECT_EQ(nbv5.Rank(i), bv5.Rank(i));
 }
 
 TEST_F(BitVectorTest, SelectWorks) {
@@ -111,6 +137,12 @@ TEST_F(BitVectorTest, SelectWorks) {
 
   for (int i = 0; i < n_sparse_true_; ++i)
     EXPECT_EQ(nbv4.Select(i), bv4.Select(i));
+
+  BitVector bv5(v5_);
+  NaiveBitVector nbv5(v5_);
+
+  for (int i = 0; i < n_mix_true_; ++i)
+    EXPECT_EQ(nbv5.Select(i), bv5.Select(i));
 }
 
 } // namespace succinct_bv
