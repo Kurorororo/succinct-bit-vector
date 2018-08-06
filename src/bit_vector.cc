@@ -134,6 +134,8 @@ BitVector::SelectIndex::~SelectIndex() {}
 void BitVector::SelectIndexTree::Init(const BitVector *b,
                                       const std::vector<uint64_t> &s) {
   first_block_index_ = s.front() / 32;
+  // the first small block in this block may be the last small block in previous block.
+  // if so, add offset.
   uint32_t first_block = b->b_[first_block_index_];
   int shift = 32 - s.front() % 32;
 

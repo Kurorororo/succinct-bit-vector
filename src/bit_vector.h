@@ -7,7 +7,6 @@
 #include <deque>
 #include <memory>
 #include <vector>
-#include <iostream>
 
 #include <x86intrin.h>
 
@@ -122,6 +121,7 @@ class BitVector {
   // store rank at i * 1/2 w in a w^2 bits block. rank is at most 2lg(w) bits.
   std::vector<uint16_t> r2_;
   std::vector<std::shared_ptr<SelectIndex> > s_;
+  // for compute select, store 8 bits pattern table instead of 1/2 w bits pattern table.
   std::vector<uint8_t> select_table_;
 };
 
