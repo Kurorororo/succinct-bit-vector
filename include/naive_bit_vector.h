@@ -6,7 +6,7 @@
 #include <deque>
 #include <vector>
 
-namespace succient_bv {
+namespace succinct_bv {
 
 class NaiveBitVector {
  public:
@@ -31,6 +31,6 @@ class NaiveBitVector {
   std::vector<uint64_t> select_;
 };
 
-} // namespace succient_bv
+} // namespace succinct_bv
 
 #endif // NAIVE_BIT_VECTOR_H_

@@ -6,7 +6,7 @@
 
 #include "naive_bit_vector.h"
 
-namespace succient_bv {
+namespace succinct_bv {
 
 class BitVectorTest : public ::testing::Test {
  protected:
@@ -113,4 +113,4 @@ TEST_F(BitVectorTest, SelectWorks) {
     EXPECT_EQ(nbv4.Select(i), bv4.Select(i));
 }
 
-} // namespace succient_bv
+} // namespace succinct_bv

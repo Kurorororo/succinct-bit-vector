@@ -4,7 +4,7 @@
 
 #include "gtest/gtest.h"
 
-namespace succient_bv {
+namespace succinct_bv {
 
 class NaiveBitVectorTest : public ::testing::Test {
  protected:
@@ -63,4 +63,4 @@ TEST_F(NaiveBitVectorTest, SelectWorks) {
   EXPECT_EQ(5215u, bv2.Select(2));
 }
 
-} // namespace succient_bv
+} // namespace succinct_bv

@@ -8,7 +8,7 @@
 #include <memory>
 #include <vector>
 
-namespace succient_bv {
+namespace succinct_bv {
 
 class BitVector {
  public:
@@ -117,6 +117,6 @@ class BitVector {
   std::vector<uint8_t> select_table_;
 };
 
-} // namespace succient_bv
+} // namespace succinct_bv
 
 #endif // BIT_VECTOR_H_

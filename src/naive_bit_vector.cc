@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace succient_bv {
+namespace succinct_bv {
 
 template<class T>
 void NaiveBitVector::Init(const T &v) {
@@ -30,4 +30,4 @@ template void NaiveBitVector::Init<std::deque<bool> >(
 template void NaiveBitVector::Init<std::vector<bool> >(
     const std::vector<bool> &v);
 
-} // namespace succient_bv
+} // namespace succinct_bv

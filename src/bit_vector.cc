@@ -7,7 +7,7 @@
 
 #include <x86intrin.h>
 
-namespace succient_bv {
+namespace succinct_bv {
 
 using std::vector;
 
@@ -263,4 +263,4 @@ void BitVector::SelectIndexTree::Dump() const {
   }
 }
 
-} // namespace succient_bv
+} // namespace succinct_bv

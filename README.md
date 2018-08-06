@@ -1,6 +1,6 @@
-# Succient Bit Vector
+# Succinct Bit Vector
 
-Succient bit vector supports following queries in constant time using n + O(nlglgn/lgn) space.
+Succinct bit vector supports following queries in constant time using n + O(nlglgn/lgn) space.
 
 - B: 0,1 vector of length n B[0]B[1]...B[n-1]
 - rank(x)
@@ -34,7 +34,7 @@ int main() {
 ```
 
 ```
-$ g++ -std=c++17 -I./succient_bv/include -L./succient_bv/lib -lsuccient_bv example.cc
+$ g++ -std=c++17 -I./succinct_bv/include -L./succinct_bv/lib -lsuccinct_bv example.cc
 ```
 
 ## Build
