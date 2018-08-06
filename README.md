@@ -22,7 +22,7 @@ Please build library, include `bit_vector.h` and link library.
 #include <bit_vector.h>
 
 int main() {
-  vector<bool> v(100, true)
+  vector<bool> v(100, false);
   v[10] = true;
   v[50] = true;
   BitVector bv(v);
